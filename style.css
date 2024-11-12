@@ -1,3 +1,68 @@
+/* Estilo do gráfico */
+body {
+            background-color: black;
+            color: #D3D3D3;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            margin: 0;
+            padding-top: 20px;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            text-align: center;
+            margin: 0;
+        }
+
+        h3 {
+            text-align: center;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        button {
+            background-color: #1E90FF;
+            color: white;
+            font-size: 14px;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            margin: 10px;
+        }
+
+        button:hover {
+            background-color: #104E8B;
+        }
+
+        .chart-container {
+            width: 80%;
+            max-width: 600px;
+            margin-top: 30px;
+        }
+
+        .legend {
+            margin-top: 20px;
+        }
+
+        .color-box {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+
+
 /* Estilo geral da página */
 body {
     background-color: #000;
@@ -123,7 +188,7 @@ textarea {
 }
 body {
     background-color: black;
-    color: #D3D3D3; /* cinza claro */
+    color: #D3D3D3;
     font-family: Arial, sans-serif;
 }
 
