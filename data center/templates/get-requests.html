@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+  </style>
+  <title>Buscar Solicitações</title>
+</head>
+<body>
+  <table id="table"></table>
+  <script>
+    function submitData(id){
+      let solicitante=document.querySelector('#solicitante-'+id).innerHTML;
+      let data=document.querySelector('#data-'+id).innerHTML;
+      let servico=document.querySelector('#servico-'+id).innerHTML;
+      let status=document.querySelector('#status-'+id).innerHTML;
+      let bairro=document.querySelector('#bairro-'+id).innerHTML;
+      console.log(solicitante,data,servico,status,bairro)
+      fetch('https://script.google.com/macros/s/AKfycbzLC0IzROZg_DeBl22bKeuuBFl2cI6dJTjzscOSO9-uJs2IaN6WwuQD9XhrPuLQtX7UDw/exec',{
+        method:'POST',
+        mode:'no-cors',
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify({
+          solicitante: solicitante,
+          data: data,
+          servico: servico,
+          status: status,
+          responsavel: 'admin',
+          bairro: bairro,
+          observacao: 'tst'
+        })
+      })
+
+      .then(data=>{
+        alert("dados enviado com sucesso!")
+      })
+      .catch(err=>console.log(err))
+    }
+    
+    function displayData(data) {
+      let table=document.querySelector('#table');
+      let tableHead=`
+          <tr>
+      <th>Solicitante</th>
+      <th>Data</th>
+      <th>Serviço</th>
+      <th>Status</th>
+      <th>Bairro</th>
+      <th>Ação</th>
+    </tr>
+      `;
+      let td = [];
+      for (let i = 0; i < data.length; i++) {
+        td.push(`
+          <tr>
+          <td id="solicitante-${data[i].user_id}">${data[i].user_name}</td>
+          
+          <td id="data-${data[i].user_id}">${data[i].data}</td>
+          
+          <td id="servico-${data[i].user_id}">${data[i].servico}</td>
+          
+          <td id="status-${data[i].id}">${data[i].status}</td>
+          
+          <td id="bairro-${data[i].user_id}">${data[i].bairro}</td>
+          
+          <td>
+          <button onclick=submitData(${data[i].user_id})>Enviar</button>
+          </td>
+          </tr>
+          `)
+      }
+      table.innerHTML = tableHead+td.join('');
+    }
+    function getData() {
+      fetch('https://orlok.pythonanywhere.com/api/v1/auth/data-analysis')
+      .then(res => res.json())
+      .then(data => {
+        sessionStorage.setItem('token', data.token);
+        getRequests();
+      })
+      .catch(err => console.log(err))
+    }
+    function getRequests() {
+      const token = sessionStorage.getItem('token');
+      fetch('https://orlok.pythonanywhere.com/api/v1/janitorial/', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(res => res.json())
+      .then(data => {
+        displayData(data)
+      })
+      .catch(err => alert(err))
+
+    }
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const table = document.querySelector('#table');
+  getData();
+})
+  </script>
+</body>
+</html>
