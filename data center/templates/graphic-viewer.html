@@ -1,23 +1,60 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-
     <meta charset="UTF-8">
     <title>Data Center Portal da Zeladoria</title>
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
         new window.VLibras.Widget('https://vlibras.gov.br/app');
     </script>
-
+    <style>
+        body {
+            background-color: #000000;
+            color: #D3D3D3;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        h2 {
+            font-size: 2em;
+            color: #FFFFFF;
+        }
+        h3, h4 {
+            font-size: 1.2em;
+        }
+        .button-group button {
+            background-color: #1E90FF;
+            color: white;
+            font-size: 1.2em; /* Aumenta o texto dos botões */
+            border: none;
+            padding: 12px 24px;
+            margin: 5px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .button-group button:hover {
+            background-color: #4682B4;
+        }
+        .chart-container {
+            width: 80%;
+            max-width: 600px;
+            margin: auto;
+            margin-top: 20px;
+        }
+        footer {
+            font-size: 0.8em;
+            color: #A9A9A9;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-
     <h2>Data Viewer - Portal da Zeladoria</h2>
-    <h3>Gere o gráfico em umclique nos botões abaixo</h3>
-    <h4>Clique no botão para gerar o gráfico e f5 para limpar o campo se quiser gerar outro</h4>
+    <h3>Gere o gráfico em um clique nos botões abaixo</h3>
+    <h4>Clique no botão para gerar o gráfico e F5 para limpar o campo se quiser gerar outro</h4>
 
     <div class="button-group">
         <button onclick="gerarGraficoBairros()">Bairros</button>
@@ -25,27 +62,27 @@
         <button onclick="gerarGraficoDatas()">Datas</button>
     </div>
 
-    
-    <div class="chart-container" id="graficoBairrosContainer">
+    <div class="chart-container">
         <canvas id="graficoBairros"></canvas>
     </div>
-
-    <div class="chart-container" id="graficoResponsaveisContainer">
+    <div class="chart-container">
         <canvas id="graficoResponsaveis"></canvas>
     </div>
-
-    <div class="chart-container" id="graficoDatasContainer">
+    <div class="chart-container">
         <canvas id="graficoDatas"></canvas>
     </div>
 
+    <footer>
+        Data Viewr Portal da Zeladoria - Desenvolvido por alunos da Univesp - 2024
+    </footer>
+
     <script>
-        
         function gerarGraficoBairros() {
             var ctx = document.getElementById('graficoBairros').getContext('2d');
-            var graficoBairros = new Chart(ctx, {
+            new Chart(ctx, {
                 type: 'pie',
                 data: {
-                    labels: ['Gonzaguinha', 'Beira Mar', 'Boa Vista', 'Gleba', 'Quarentenário', 'Parque das Bandeiras', 'Humaitá'], // Substituir com dados reais
+                    labels: ['Gonzaguinha', 'Beira Mar', 'Boa Vista', 'Gleba', 'Quarentenário', 'Parque das Bandeiras', 'Humaitá'],
                     datasets: [{
                         label: 'Bairros',
                         data: [10, 5, 8, 7, 2, 3, 4],
@@ -54,69 +91,87 @@
                         borderWidth: 1
                     }]
                 },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'top',
-                        },
+                options: { 
+                    responsive: true, 
+                    plugins: { 
+                        legend: { 
+                            position: 'right', 
+                            labels: {
+                                font: {
+                                    size: 16 // Tamanho da fonte maior para a legenda
+                                },
+                                color: '#E0E0E0' // Cor mais clara para melhor visibilidade
+                            }
+                        }
                     }
                 }
             });
         }
 
-        
         function gerarGraficoResponsaveis() {
             var ctx = document.getElementById('graficoResponsaveis').getContext('2d');
-            var graficoResponsaveis = new Chart(ctx, {
+            new Chart(ctx, {
                 type: 'pie',
                 data: {
-                    labels: ['José', 'João', 'Apolonio', 'Manoel', 'José Carlos'], 
+                    labels: ['José', 'João', 'Apolonio', 'Manoel', 'José Carlos'],
                     datasets: [{
                         label: 'Responsáveis',
-                        data: [5, 8, 3, 2, 7], 
+                        data: [5, 8, 3, 2, 7],
                         backgroundColor: ['#FF6347', '#FF4500', '#ADFF2F', '#FFD700', '#1E90FF'],
                         borderColor: '#D3D3D3',
                         borderWidth: 1
                     }]
                 },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'top',
-                        },
+                options: { 
+                    responsive: true, 
+                    plugins: { 
+                        legend: { 
+                            position: 'right', 
+                            labels: {
+                                font: {
+                                    size: 16 // Tamanho da fonte maior para a legenda
+                                },
+                                color: '#E0E0E0' // Cor mais clara para melhor visibilidade
+                            }
+                        }
                     }
                 }
             });
         }
 
-        
         function gerarGraficoDatas() {
             var ctx = document.getElementById('graficoDatas').getContext('2d');
-            var graficoDatas = new Chart(ctx, {
+            new Chart(ctx, {
                 type: 'pie',
                 data: {
-                    labels: ['2024-01-01', '2024-02-01', '2024-03-01'], 
+                    labels: ['2024-01-01', '2024-02-01', '2024-03-01'],
                     datasets: [{
                         label: 'Datas',
-                        data: [15, 10, 5], 
+                        data: [15, 10, 5],
                         backgroundColor: ['#32CD32', '#FFD700', '#1E90FF'],
                         borderColor: '#D3D3D3',
                         borderWidth: 1
                     }]
                 },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'top',
-                        },
+                options: { 
+                    responsive: true, 
+                    plugins: { 
+                        legend: { 
+                            position: 'right', 
+                            labels: {
+                                font: {
+                                    size: 16 // Tamanho da fonte maior para a legenda
+                                },
+                                color: '#E0E0E0' // Cor mais clara para melhor visibilidade
+                            }
+                        }
                     }
                 }
             });
         }
     </script>
-
 </body>
 </html>
+
+
+
