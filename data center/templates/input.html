@@ -1,32 +1,89 @@
 <!DOCTYPE html>
 <html lang="pt">
 
-<script src="https://cdn.jsdelivr.net/npm/unorm"></script>
-
-
 <head>
   <meta charset="UTF-8">
   <title>Enviar Solicitação de Serviço para a Planilha</title>
+
+  <style>
+    /* Estilo geral */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #d3d3d3;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      font-size: 18px;
+    }
+
+    /* Título e subtítulo */
+    h2 {
+      color: #d3d3d3;
+      font-size: 32px;
+      margin-top: 20px;
+    }
+
+    /* Subtítulo */
+    label, input, select, textarea, button {
+      display: block;
+      margin: 10px auto;
+      font-size: 20px;
+    }
+
+    /* Campos e dropdown */
+    input[type="text"], input[type="date"], textarea, select {
+      padding: 10px;
+      width: 80%;
+      max-width: 400px;
+      border-radius: 5px;
+      border: none;
+    }
+
+    /* Estilo do dropdown */
+    select {
+      background-color: #1E3A8A;
+      color: #d3d3d3;
+    }
+
+    /* Botão Enviar */
+    button {
+      background-color: #007bff;
+      color: #d3d3d3;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-size: 22px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #1E90FF;
+    }
+  </style>
 </head>
+
 <body>
   <h2>Enviar Solicitação de Serviço para a Planilha</h2>
+  <p>Preencha todos os campos e clique em Enviar para salvar as informações na planilha</p>
 
   <label>Solicitante:</label>
-  <input type="text" id="solicitante" placeholder="Nome do solicitante"><br><br>
+  <input type="text" id="solicitante" placeholder="Nome do solicitante">
 
   <label>Data:</label>
-  <input type="date" id="data"><br><br>
+  <input type="date" id="data">
 
   <label>Serviço:</label>
-  <input type="text" id="servico" placeholder="Tipo de serviço"><br><br>
+  <input type="text" id="servico" placeholder="Tipo de serviço">
 
   <label>Status:</label>
   <select id="status">
-    <option value="Iniciada">Iniciada</option>
+    <option value="Pendente">Pendente</option>
     <option value="Em andamento">Em andamento</option>
-    <option value="Cancelada">Cancelada</option>
-    <option value="Serviço realizado">Serviço realizado</option>
-  </select><br><br>
+    <option value="Serviço Pausado">Serviço Pausado</option>
+    <option value="Finalizado">Finalizado</option>
+  </select>
 
   <label>Responsável:</label>
   <select id="responsavel">
@@ -36,7 +93,7 @@
     <option value="Manoel">Manoel</option>
     <option value="José Carlos">José Carlos</option>
     <option value="Jorge">Jorge</option>
-  </select><br><br>
+  </select>
 
   <label>Bairro:</label>
   <select id="bairro">
@@ -50,10 +107,10 @@
     <option value="Humaitá">Humaitá</option>
     <option value="Rio Branco">Rio Branco</option>
     <option value="Nova São Vicente">Nova São Vicente</option>
-  </select><br><br>
+  </select>
 
   <label>Observações (máx. 200 caracteres):</label>
-  <textarea id="observacao" maxlength="200" placeholder="Digite observações aqui"></textarea><br><br>
+  <textarea id="observacao" maxlength="200" placeholder="Digite observações aqui"></textarea>
 
   <button onclick="enviarDados()">Enviar</button>
 
@@ -67,9 +124,8 @@
       const bairro = document.getElementById("bairro").value;
       const observacao = document.getElementById("observacao").value;
 
-      const url = "https://schttps://script.google.com/macros/s/AKfycbx-zIaMgb7tBHu-0f4YTJk-343ZREe8D5hCrqMMpBSS--d7bJOBkztZao86jN8NiqrdEg/execript.google.com/macros/s/AKfycbxS2xmiy8dSFPsjjfmQ7GhELGOuATko6Xjy33AAUl2FDKwpUfwjtNoWzXGdCbn8LkJfJw/execps://docs.google.com/spreadsheets/d/1QlgU_VF_UdBq_ESpdOerW-https://script.google.com/macros/s/AKfycbwM8GGQCK09ScGPTqeCRfi9c-kj9T-jP3RsSAgWsBDDnQH45SuFfT6wX-FMUsYBScajzw/exec"; 
+      const url = "https://script.google.com/macros/s/AKfycbx-zIaMgb7tBHu-0f4YTJk-343ZREe8D5hCrqMMpBSS--d7bJOBkztZao86jN8NiqrdEg/exec";
 
-      
       fetch(url, {
         method: "POST",
         mode: "no-cors",

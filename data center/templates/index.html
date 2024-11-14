@@ -10,58 +10,67 @@
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #d3d3d3;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #d3d3d3;
+            margin-top: 20px;
+        }
+
+        h2 {
+            color: #d3d3d3;
+            margin-top: 40px; 
+        }
+
+        .button-container {
+            margin-top: 80px;
+        }
+
+        .access-button {
+            display: inline-block;
+            background-color: #007bff;
+            color: #d3d3d3;
+            padding: 40px 80px;
+            border-radius: 10px; 
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .access-button:hover {
+            background-color: #1E90FF;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #000;
+            color: #d3d3d3;
+            font-size: 0.9em;
+            padding: 10px 0;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <h1>Consulta Planilha Análise de Dados</h1>
-    <h2>Aqui você pode acessar a planilha para consultas e edições</h2>
-
-   
-    <img src="templates/index-logo.html" alt="Logo" style="width: 200px; margin: 20px 0;">
-
-    <canvas id="servicosChart" width="400" height="400"></canvas>
+    <h2>Entre e acesse a planilha para fazer consultas e edições</h2>
 
     <div class="button-container">
         <a href="https://docs.google.com/spreadsheets/d/1QlgU_VF_UdBq_ESpdOerW-jvxVtnHAFeFU3FUeV8ZRI/edit?usp=sharing" target="_blank" class="access-button">
-            Acesse os dados da planilha
+            Entrar
         </a>
     </div>
 
-    <script>
-        async function fetchData() {
-            const response = await fetch('/api/solicitacoes');
-            const data = await response.json();
-            return data;
-        }
-
-        async function renderChart() {
-            const data = await fetchData();
-            const labels = data.map(item => item[0]);
-            const tipos = data.map(item => item[1]);
-            const chartData = {
-                labels: labels,
-                datasets: [{
-                    label: 'Tipo de Serviço',
-                    data: tipos.map(tipo => tipos.filter(t => t === tipo).length),
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1
-                }]
-            };
-
-            const ctx = document.getElementById('servicosChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'bar',
-                data: chartData,
-                options: {
-                    scales: {
-                        y: { beginAtZero: true }
-                    }
-                }
-            });
-        }
-
-        renderChart();
-    </script>
+    <footer>Consulta Planilha - Desenvolvido por alunos da Univesp - 2024</footer>
 </body>
 </html>
