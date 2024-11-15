@@ -6,7 +6,7 @@
   <title>Enviar Solicitação de Serviço para a Planilha</title>
 
   <style>
-    /* Estilo geral */
+    
     body {
       font-family: Arial, sans-serif;
       background-color: #000;
@@ -17,36 +17,56 @@
       font-size: 18px;
     }
 
-    /* Título e subtítulo */
+    
     h2 {
       color: #d3d3d3;
       font-size: 32px;
       margin-top: 20px;
     }
 
-    /* Subtítulo */
     label, input, select, textarea, button {
       display: block;
       margin: 10px auto;
       font-size: 20px;
     }
 
-    /* Campos e dropdown */
+    
     input[type="text"], input[type="date"], textarea, select {
       padding: 10px;
       width: 80%;
       max-width: 400px;
       border-radius: 5px;
-      border: none;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      color: #000;
     }
 
-    /* Estilo do dropdown */
+    /* Dropdown */
     select {
-      background-color: #1E3A8A;
-      color: #d3d3d3;
+      appearance: none; /* Remove estilo padrão */
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-color: #fff;
+      color: #000;
+      cursor: pointer;
     }
 
-    /* Botão Enviar */
+    
+    select option:nth-child(odd) {
+      background-color: #1E90FF; /* Azul mais claro */
+      color: #fff;
+    }
+
+    select option:nth-child(even) {
+      background-color: #4682B4; /* Azul mais escuro */
+      color: #fff;
+    }
+
+    select:focus {
+      border: 2px solid #1E90FF;
+    }
+
+    
     button {
       background-color: #007bff;
       color: #d3d3d3;
@@ -75,7 +95,16 @@
   <input type="date" id="data">
 
   <label>Serviço:</label>
-  <input type="text" id="servico" placeholder="Tipo de serviço">
+  <select id="servico">
+    <option value="Cata-treco">Cata-treco</option>
+    <option value="Hidrojato">Hidrojato</option>
+    <option value="Iluminação">Iluminação</option>
+    <option value="Nivelamento de Piso">Nivelamento de Piso</option>
+    <option value="Roçagem">Roçagem</option>
+    <option value="Tampas e Grelhas">Tampas e Grelhas</option>
+    <option value="Tapa Buraco">Tapa Buraco</option>
+    <option value="Poda e Remoção de Árvores">Poda e Remoção de Árvores</option>
+  </select>
 
   <label>Status:</label>
   <select id="status">
@@ -124,7 +153,7 @@
       const bairro = document.getElementById("bairro").value;
       const observacao = document.getElementById("observacao").value;
 
-      const url = "https://script.google.com/macros/s/AKfycbx-zIaMgb7tBHu-0f4YTJk-343ZREe8D5hCrqMMpBSS--d7bJOBkztZao86jN8NiqrdEg/exec";
+      const url = "https://script.google.com/macros/s/AKfycbxAzBmvbGmFTdhH_z1eJq8o3EzpZEcM-hbWSaNzmM11QguSIn8reByIRTbDYLalUtH5wg/exec";
 
       fetch(url, {
         method: "POST",
@@ -139,6 +168,3 @@
         console.error("Erro ao enviar os dados:", error);
       });
     }
-  </script>
-</body>
-</html>
