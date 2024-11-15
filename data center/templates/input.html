@@ -17,56 +17,38 @@
       font-size: 18px;
     }
 
-    
     h2 {
       color: #d3d3d3;
       font-size: 32px;
       margin-top: 20px;
     }
 
-    label, input, select, textarea, button {
+    label,
+    input,
+    select,
+    textarea,
+    button {
       display: block;
       margin: 10px auto;
       font-size: 20px;
     }
 
-    
-    input[type="text"], input[type="date"], textarea, select {
+    input[type="text"],
+    input[type="date"],
+    textarea,
+    select {
       padding: 10px;
       width: 80%;
       max-width: 400px;
       border-radius: 5px;
-      border: 1px solid #ccc;
-      background-color: #fff;
-      color: #000;
+      border: none;
     }
 
-    /* Dropdown */
     select {
-      appearance: none; /* Remove estilo padrão */
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      background-color: #fff;
-      color: #000;
-      cursor: pointer;
+      background-color: #1E3A8A;
+      color: #d3d3d3;
     }
 
-    
-    select option:nth-child(odd) {
-      background-color: #1E90FF; /* Azul mais claro */
-      color: #fff;
-    }
-
-    select option:nth-child(even) {
-      background-color: #4682B4; /* Azul mais escuro */
-      color: #fff;
-    }
-
-    select:focus {
-      border: 2px solid #1E90FF;
-    }
-
-    
     button {
       background-color: #007bff;
       color: #d3d3d3;
@@ -131,7 +113,6 @@
     <option value="Boa Vista">Boa Vista</option>
     <option value="Gleba">Gleba</option>
     <option value="Quarentenário">Quarentenário</option>
-    <option value="Beira Mar">Beira Mar</option>
     <option value="Parque das Bandeiras">Parque das Bandeiras</option>
     <option value="Humaitá">Humaitá</option>
     <option value="Rio Branco">Rio Branco</option>
@@ -153,7 +134,7 @@
       const bairro = document.getElementById("bairro").value;
       const observacao = document.getElementById("observacao").value;
 
-      const url = "https://script.google.com/macros/s/AKfycbxAzBmvbGmFTdhH_z1eJq8o3EzpZEcM-hbWSaNzmM11QguSIn8reByIRTbDYLalUtH5wg/exec";
+      const url = "https://script.google.com/macros/s/AKfycbx-zIaMgb7tBHu-0f4YTJk-343ZREe8D5hCrqMMpBSS--d7bJOBkztZao86jN8NiqrdEg/exec";
 
       fetch(url, {
         method: "POST",
@@ -162,9 +143,14 @@
           "Content-Type": "application/json"
         },
         body: JSON.stringify({ solicitante, data, servico, status, responsavel, bairro, observacao })
-      }).then(response => {
-        console.log("Dados enviados com sucesso!");
+      }).then(() => {
+        alert("Dados enviados com sucesso!");
       }).catch(error => {
+        alert("Erro ao enviar os dados. Tente novamente.");
         console.error("Erro ao enviar os dados:", error);
       });
     }
+  </script>
+</body>
+
+</html>
