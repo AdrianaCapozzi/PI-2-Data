@@ -9,4 +9,4 @@ def test_get_requests():
 
 if __name__ == "__main__":
     test_get_requests()
-    print("Todos os testes passaram!")
+    print("Tudo certo pr aqui, os testes passaram!")
