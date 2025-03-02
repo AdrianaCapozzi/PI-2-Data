@@ -24,3 +24,4 @@ jobs:
       - name: Rodar teste de carregamento da página
         run: |
           npx playwright test --ui
+          
