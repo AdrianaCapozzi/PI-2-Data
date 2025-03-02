@@ -1,0 +1,26 @@
+name: Testar Página com Playwright
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar repositório
+        uses: actions/checkout@v3
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Instalar Playwright
+        run: npm install -g playwright
+
+      - name: Instalar navegadores do Playwright
+        run: npx playwright install
+
+      - name: Rodar teste de carregamento da página
+        run: |
+          npx playwright test --ui
