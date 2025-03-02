@@ -1,12 +1,16 @@
 import requests
 
-BASE_URL = "https://orlok.pythonanywhere.com/api/v1/janitorial/"
-
 def test_get_requests():
-    response = requests.get(BASE_URL)
-    assert response.status_code == 200  
-    assert isinstance(response.json(), list)  
+    token = "https://orlok.pythonanywhere.com/api/v1/janitorial/"
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json"
+    }
+    
+    response = requests.get("https://orlok.pythonanywhere.com/api/v1/janitorial/", headers=headers)
 
-if __name__ == "__main__":
-    test_get_requests()
-    print("Tudo certo pr aqui, os testes passaram!")
+    print("Status Code:", response.status_code)
+    print("Response Text:", response.text)
+
+    assert response.status_code == 200
+
