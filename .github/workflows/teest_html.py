@@ -7,4 +7,4 @@ def test_html_structure():
     assert soup.h1.string == "Bem-vindo"
 
 
-#Isso verifica se o título da página e o <h1> estão corretos
+#Isso verifica se o título da página e o <h1> estão corretos, relatar no relatório
