@@ -1,6 +1,6 @@
 name: Executar Testes com Jest
 
-on: [push, pull_request] # Roda os testes sempre que um push ou PR for feito
+on: [push, pull_request] # Roda os testes
 
 jobs:
   test:
